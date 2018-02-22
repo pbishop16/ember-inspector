@@ -9,6 +9,8 @@ export default Component.extend({
   checked: false,
 
   change() {
+
+
     this._updateElementValue();
   },
 

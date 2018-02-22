@@ -1,7 +1,8 @@
 import Ember from "ember";
 import checkCurrentRoute from "ember-inspector/utils/check-current-route";
+import searchMatch from "ember-inspector/utils/search-match";
 
-const { Controller, computed, inject: { controller } } = Ember;
+const { Controller, computed, inject: { controller }, get } = Ember;
 
 export default Controller.extend({
   application: controller(),
@@ -15,18 +16,25 @@ export default Controller.extend({
     hideRoutes: false
   },
 
+  searchText: '',
+
   model: computed(() => []),
 
-  filtered: computed('model.[]', 'options.hideRoutes', 'currentRoute', function() {
+  filtered: computed('model.[]', 'options.hideRoutes', 'currentRoute', 'searchText', function() {
     return this.get('model').filter(routeItem => {
       let currentRoute = this.get('currentRoute');
       let hideRoutes = this.get('options.hideRoutes');
 
+      let shouldContinue = true;
       if (hideRoutes && currentRoute) {
-        return checkCurrentRoute(currentRoute, routeItem.value.name);
-      } else {
-        return true;
+        shouldContinue = checkCurrentRoute(currentRoute, routeItem.value.name);
       }
+
+      if (!shouldContinue) {
+        return false;
+      }
+
+      return searchMatch(get(routeItem, 'value.name'), this.get('searchText'));
     });
   }),
 
