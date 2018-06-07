@@ -20,7 +20,8 @@
     "upload": "yarn build:production && grunt s3:bookmarklet",
     "compress:panes": "grunt compress:chrome-pane && grunt compress:firefox-pane && grunt compress:bookmarklet-pane",
     "upload:panes": "yarn build && yarn compress:panes && node scripts/upload-panes.js",
-    "lock-version": "yarn build:production && yarn compress:panes && EMBER_ENV=production node scripts/upload-panes.js"
+    "lock-version": "yarn build:production && yarn compress:panes && EMBER_ENV=production node scripts/upload-panes.js",
+    "start:firefox": "web-ext run --source-dir ./dist/firefox/"
   },
   "emberVersionsSupported": [
     "2.7.0",
@@ -85,6 +86,7 @@
     "mkdirp": "^0.5.1",
     "qunit-dom": "^0.6.2",
     "rimraf": "^2.5.2",
+    "web-ext": "^2.7.0",
     "yauzl": "^2.4.1"
   },
   "engines": {
