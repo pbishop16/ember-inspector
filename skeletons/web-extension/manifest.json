@@ -5,6 +5,13 @@
   "description": "Tool for debugging Ember applications.",
   "version": "{{EMBER_INSPECTOR_VERSION}}",
 
+  "applications": {
+    "gecko": {
+      "id": "@emberjs.com",
+      "strict_min_version": "54.0"
+    }
+  },
+
   "icons": {
     "16":  "{{PANE_ROOT}}/assets/images/icon16.png",
     "48":  "{{PANE_ROOT}}/assets/images/icon48.png",
@@ -31,6 +38,7 @@
   },
 
   "page_action": {
+    "browser_style": true,
     "default_icon": {
       "19": "{{PANE_ROOT}}/assets/images/icon19.png",
       "38": "{{PANE_ROOT}}/assets/images/icon38.png"

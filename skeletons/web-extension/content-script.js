@@ -23,10 +23,16 @@
    * See:
    *     https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API
    */
+
+  // const port = chrome.runtime.connect({
+  //   name: 'content-script',
+  // });
+
   window.addEventListener('message', function(event) {
     // received initial message from EmberDebug
     if (event.data === 'debugger-client') {
       var emberDebugPort = event.ports[0];
+      console.log(emberDebugPort);
       listenToEmberDebugPort(emberDebugPort);
     } else if (event.data && event.data.type) {
       chrome.runtime.sendMessage(event.data);

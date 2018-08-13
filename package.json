@@ -21,7 +21,9 @@
     "compress:panes": "grunt compress:chrome-pane && grunt compress:firefox-pane && grunt compress:bookmarklet-pane",
     "upload:panes": "yarn build && yarn compress:panes && node scripts/upload-panes.js",
     "lock-version": "yarn build:production && yarn compress:panes && EMBER_ENV=production node scripts/upload-panes.js",
-    "start:firefox": "web-ext run --source-dir ./dist/firefox/"
+    "start:firefox": "web-ext run --source-dir ./dist/firefox/",
+    "build:firefox": "web-ext build --source-dir ./dist/firefox/",
+    "lint:firefox": "web-ext lint --source-dir ./dist/firefox/"
   },
   "emberVersionsSupported": [
     "2.7.0",
